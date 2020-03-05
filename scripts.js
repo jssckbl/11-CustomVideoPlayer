@@ -31,16 +31,19 @@ function updateButton() {
     console.log('update the button');  
 }
 
+// skip ahead or back within the video
+function skip() {
+    console.log('skipping', this.dataset.skip);
+    video.currentTime += parseFloat(this.dataset.skip);
+}
 
 // hook up event listeners to when you click screen or actual button
 // click on video to play and pause video
 video.addEventListener('click', togglePlay);
-
+// listen to whenever the video is paused to update the button from play to pause icon
 video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
-
-
 // click on triangle icon to play and pause video
 toggle.addEventListener('click', togglePlay);
-
-// listen to whenever the video is paused to update the button from play to pause icon
+// 
+skipButtons.forEach(button => button.addEventListener('click', skip));
