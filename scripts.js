@@ -49,6 +49,14 @@ function handleProgress() {
     progressBar.style.flexBasis = `${percent}%`
 }
 
+// event offset X which is found in the dropdown from the console
+function scrub(e) {
+    const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+    video.currentTime = scrubTime;
+    console.log(e);
+}
+
+
 // hook up event listeners to when you click screen or actual button
 // click on video to play and pause video
 video.addEventListener('click', togglePlay);
@@ -64,3 +72,5 @@ skipButtons.forEach(button => button.addEventListener('click', skip));
 
 
 ranges.forEach(range => range.addEventListener('change', handleRangeUpdate));
+
+progress.addEventListener('click', scrub);
