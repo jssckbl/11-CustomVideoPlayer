@@ -24,7 +24,23 @@ function togglePlay() {
 //     video[method]();
 // }
 
+function updateButton() {
+    const icon = this.paused ? '►' : '❚ ❚';
+    toggle.textContent = icon;
+    // you can use 'this' above because it is bound to the video
+    console.log('update the button');  
+}
+
 
 // hook up event listeners to when you click screen or actual button
-
+// click on video to play and pause video
 video.addEventListener('click', togglePlay);
+
+video.addEventListener('play', updateButton);
+video.addEventListener('pause', updateButton);
+
+
+// click on triangle icon to play and pause video
+toggle.addEventListener('click', togglePlay);
+
+// listen to whenever the video is paused to update the button from play to pause icon
