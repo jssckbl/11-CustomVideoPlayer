@@ -1,5 +1,6 @@
-// there are three pieces to the following code
-// we will get our elements
+// there are three sections for this project 
+
+// 1. establish our elements
 const player = document.querySelector('.player');
 const video = player.querySelector('.viewer');
 const progress = player.querySelector('.progress');
@@ -9,7 +10,7 @@ const skipButtons = player.querySelectorAll('[data-skip]');
 const ranges = player.querySelectorAll('.player__slider');
 
 
-// build out our functions
+// 2. build out our functions
 function togglePlay() {
     if(video.paused) {
         video.play();
@@ -57,25 +58,30 @@ function scrub(e) {
 }
 
 
-// hook up event listeners to when you click screen or actual button
+// 3. hook up event listeners to when you click screen or actual button
+
 // click on video to play and pause video
 video.addEventListener('click', togglePlay);
+
 // listen to whenever the video is paused to update the button from play to pause icon
 video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
+
 // update progress bar
 video.addEventListener('timeupdate', handleProgress);
+
 // click on triangle icon to play and pause video
 toggle.addEventListener('click', togglePlay);
-// 
+ 
 skipButtons.forEach(button => button.addEventListener('click', skip));
-
 
 ranges.forEach(range => range.addEventListener('change', handleRangeUpdate));
 
 let mousedown = false;
 progress.addEventListener('click', scrub);
-progress.addEventListener('mousemove', () => mousedown && scrub);
+progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
 
 progress.addEventListener('mousedown', () => mousedown = true);
 progress.addEventListener('mouseup', () => mouseup = false);
+
+// STRETCH GOAL: add button for full screen that functions as expected
